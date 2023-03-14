@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Form</title>
+    <style>
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"], input[type="email"], input[type="password"], select {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        padding: 5px;
+      }
+      .error {
+        color: red;
+        font-size: 14px;
+      }
+      .success {
+        color: green;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" name="phone" required>
+      
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">--Select--</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      
+      <button type="submit">Submit</button>
+    </form>
+    
+    <div id="errorBlock"></div>
+    <div id="successBlock"></div>
+    
+    <script>
+      const form = document.getElementById('myForm');
+      const errorBlock = document.getElementById('errorBlock');
+      const successBlock = document.getElementById('successBlock');
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        
+        errorBlock.innerHTML = '';
+        successBlock.innerHTML = '';
+        
+        
+        const name = form.elements['name'].value;
+        const email = form.elements['email'].value;
+        const phone = form.elements['phone'].value;
+        const gender = form.elements['gender'].value;
+        const password = form.elements['password'].value;
+        
+        let isError = false;
+        if (!name) {
+          form.elements['name'].classList.add('error');
+          isError = true;
+        } else {
+          form.elements['name'].classList.remove('error');
+        }
+        
+        if (!email) {
+          form.elements['email'].classList.add('error');
+          isError = true;
+        } else {
+          form.elements['email'].classList.remove('error');
+        }
+        
+        if (!phone) {
+          form.elements['phone'].classList.add('error');
+          isError = true;
+        } else {
+          form.elements['phone'].classList.remove('error');
+        }
+        
+        if (!gender) {
+          form.elements['gender'].classList.add('error');
+          isError = true;
+        } else {
+          form.elements['gender'].classList.remove('error');
+        }
+        
+        if (!password) {
+          form.elements['password'].classList.add('error');
+          isError = true;
+        } else {
+          form.elements['password'].classList.remove('error');
+        }
+        
+        if (isError) {
+          errorBlock.innerHTML = 'Please fill all fields.';
+          return;
+        }
+        
+      
+        const emailRegex = /"afolabi1234@gmail.com"/
